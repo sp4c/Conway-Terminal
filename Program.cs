@@ -2,11 +2,27 @@
 
 namespace Conway_Terminal
 {
+
     class Program
     {
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            var newGame = new Conway();
+            while (true)
+            {
+                Console.Clear();
+                newGame.DrawFrame();
+                System.Threading.Thread.Sleep(250);
+            }
+            Console.ReadKey();
         }
+        public static string Prompt(string prompt)
+        {
+            Console.WriteLine(prompt);
+            return Console.ReadLine();
+        }
+
     }
 }
