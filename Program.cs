@@ -14,9 +14,9 @@ namespace Conway_Terminal
             {
                 Console.Clear();
                 newGame.DrawFrame();
-                System.Threading.Thread.Sleep(250);
+                System.Threading.Thread.Sleep(300);
             }
-            Console.ReadKey();
+
         }
         public static string Prompt(string prompt)
         {

@@ -6,7 +6,7 @@ namespace Conway_Terminal
     {
         const int _upperY = 5;
         const int _upperX = 5;
-        private Char[,] map = new Char[_upperY, _upperX];
+        private char[,] map = new char[_upperY, _upperX];
         private int _alive, _start, _neighbors;
 
 
@@ -26,27 +26,31 @@ namespace Conway_Terminal
                 int rdmX = rdm.Next(0, _upperX);
                 if (map[rdmY, rdmX] == '1') continue;
                 map[rdmY, rdmX] = '1';
-                Count();
-            } while (_alive < _start);
+            } while (Count() < _start);
 
 
         }
 
         private void DrawStart()
         {
+            Console.Write(@"
+   _____                                              _            _____                            
+  / ____|                                            ( )          / ____|                           
+ | |        ___    _ __   __      __   __ _   _   _  |/   ___    | |  __    __ _   _ __ ___     ___ 
+ | |       / _ \  | '_ \  \ \ /\ / /  / _` | | | | |     / __|   | | |_ |  / _` | | '_ ` _ \   / _ \
+ | |____  | (_) | | | | |  \ V  V /  | (_| | | |_| |     \__ \   | |__| | | (_| | | | | | | | |  __/
+  \_____|  \___/  |_| |_|   \_/\_/    \__,_|  \__, |     |___/    \_____|  \__,_| |_| |_| |_|  \___|
+                                               __/ |                                                
+                                              |___/                                                 ");  //big font
             Console.WriteLine(@"
-   ___                                       _           ___                      
-  / __|  ___   _ _   __ __ __  __ _   _  _  ( )  ___    / __|  __ _   _ __    ___ 
- | (__  / _ \ | ' \  \ V  V / / _` | | || | |/  (_-<   | (_ | / _` | | '  \  / -_)
-  \___| \___/ |_||_|  \_/\_/  \__,_|  \_, |     /__/    \___| \__,_| |_|_|_| \___|
-                                      |__/                                        ");  //standard font (theres a good chance im wrong)
-            _start = Convert.ToInt32(Program.Prompt("How many do you want to start alive"));
-            Console.WriteLine(@"
- ____  ____  ____  ____  ____  ____  _________  ____  ____  ____  ____  ____ 
-||P ||||r ||||e ||||a ||||s ||||s ||||       ||||S ||||t ||||a ||||r ||||t ||
-||__||||__||||__||||__||||__||||__||||_______||||__||||__||||__||||__||||__||
-|/__\||/__\||/__\||/__\||/__\||/__\||/_______\||/__\||/__\||/__\||/__\||/__\|"); //smkeyboard font
-            Console.ReadKey();
+                                                             ___            ___          _ _       
+                                                            | _ )  _  _    / __|  _ __  | | |   __ 
+                                                            | _ \ | || |   \__ \ | '_ \ |_  _| / _|
+                                                            |___/  \_, |   |___/ | .__/   |_|  \__|
+                                                                    |__/          |_|               "); //small font
+                                                                                                        //fonts by messletters.com
+            Console.Write("\n");
+            _start = Convert.ToInt32(Program.Prompt("Start Count: "));
         }
         private void ApplyRules()
         {
@@ -81,20 +85,20 @@ namespace Conway_Terminal
             _alive = 0;
             for (int y = 0; y < _upperY; y++)
                 for (int x = 0; x < _upperX; x++)
-                    if (x == 1)
+                    if (map[y,x] == '1')
                         _alive += 1;
             return _alive;
         }
         public void DrawFrame()
         {
 
-            foreach (int y in map)
+            for (int y = 0; y < _upperY; y++)
             {
-                foreach (int x in map)
+                for (int x = 0; x < _upperX; x++)
                 {
-                    Console.Write(' ' + (x));
+                    Console.Write(map[y, x] + " ");
                 }
-                Console.WriteLine();
+                Console.Write("\n");
             }
             //ApplyRules();
         }
