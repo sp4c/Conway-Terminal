@@ -1,0 +1,11 @@
+C:\Users\Zacke\Documents\Conway-Terminal\bin\Debug\netcoreapp2.0\Conway-Terminal.deps.json
+C:\Users\Zacke\Documents\Conway-Terminal\bin\Debug\netcoreapp2.0\Conway-Terminal.runtimeconfig.json
+C:\Users\Zacke\Documents\Conway-Terminal\bin\Debug\netcoreapp2.0\Conway-Terminal.runtimeconfig.dev.json
+C:\Users\Zacke\Documents\Conway-Terminal\bin\Debug\netcoreapp2.0\Conway-Terminal.dll
+C:\Users\Zacke\Documents\Conway-Terminal\bin\Debug\netcoreapp2.0\Conway-Terminal.pdb
+C:\Users\Zacke\Documents\Conway-Terminal\obj\Debug\netcoreapp2.0\Conway-Terminal.csprojAssemblyReference.cache
+C:\Users\Zacke\Documents\Conway-Terminal\obj\Debug\netcoreapp2.0\Conway-Terminal.csproj.CoreCompileInputs.cache
+C:\Users\Zacke\Documents\Conway-Terminal\obj\Debug\netcoreapp2.0\Conway-Terminal.AssemblyInfoInputs.cache
+C:\Users\Zacke\Documents\Conway-Terminal\obj\Debug\netcoreapp2.0\Conway-Terminal.AssemblyInfo.cs
+C:\Users\Zacke\Documents\Conway-Terminal\obj\Debug\netcoreapp2.0\Conway-Terminal.dll
+C:\Users\Zacke\Documents\Conway-Terminal\obj\Debug\netcoreapp2.0\Conway-Terminal.pdb
