@@ -4,8 +4,8 @@ namespace Conway_Terminal
 {
     class Conway
     {
-        const int _upperY = 5;
-        const int _upperX = 5;
+        const int _upperY = 15;
+        const int _upperX = 15;
         private char[,] map = new char[_upperY, _upperX];
         private int _alive, _start, _neighbors;
 
@@ -54,17 +54,43 @@ namespace Conway_Terminal
         }
         private void ApplyRules()
         {
-            throw new NotImplementedException();
+            char[,] oldMap = map;
+            for (int y = 0; y < _upperY; y++)
+            {
+                for (int x = 0; x < _upperX; x++)
+                {
+                    switch (Count(x, y, oldMap))
+                    {
+                        case 0:
+                        case 1:
+                            if (oldMap[y, x] == '1')
+                                map[y, x] = '0';
+                            break;
+                        case 2: 
+                            break;
+                        case 3:
+                            map[y, x] = '1';
+                            break;
+                        case 4:
+                        default:
+                            map[y, x] = '0'; //would it be bad practice to use an if
+                            break;           //either way the value is 0 but it makes it more readable but also more slow
+                    }
+                }
+                Console.Write("\n");
+            }
+
         }
-        private int Count(int gx, int gy)
+        private int Count(int gx, int gy, char[,] oldMap)
         {
+            _neighbors = 0;
             _alive = 0;
             for (int y = 0; y < _upperY; y++)
                 for (int x = 0; x < _upperX; x++)
-                    if (map[y, x] == '1')
+                    if (oldMap[y, x] == '1')
                     {
                         _alive += 1;
-                        if (x + 1 == gx || x - 1 == gx && y + 1 == gy || y - 1 == gy)
+                        if ((x + 1 == gx || x - 1 == gx) && (y + 1 == gy || y - 1 == gy))
                         {
                             _neighbors += 1;
                             continue;
@@ -85,7 +111,7 @@ namespace Conway_Terminal
             _alive = 0;
             for (int y = 0; y < _upperY; y++)
                 for (int x = 0; x < _upperX; x++)
-                    if (map[y,x] == '1')
+                    if (map[y, x] == '1')
                         _alive += 1;
             return _alive;
         }
@@ -100,7 +126,7 @@ namespace Conway_Terminal
                 }
                 Console.Write("\n");
             }
-            //ApplyRules();
+            ApplyRules();
         }
 
     }
