@@ -5,10 +5,11 @@ namespace Conway_Terminal
 {
     class Conway
     {
-        const int _upperY = 15;
-        const int _upperX = 15;
+        const int _upperY = 10;
+        const int _upperX = 10;
         private char[,] map = new char[_upperY, _upperX];
         private int _alive, _start;
+        public int gameSpeed;
 
 
         public Conway()
@@ -55,6 +56,7 @@ namespace Conway_Terminal
             Console.Write("\n");
             Console.ResetColor();
             _start = Convert.ToInt32(Program.Prompt("Start Count: "));
+            gameSpeed = Convert.ToInt32(Program.Prompt("How fast (in millisecond): "));
         }
         private void ApplyRules()
         {
@@ -99,7 +101,7 @@ namespace Conway_Terminal
                          7 6 5
                      */
                     _alive += 1;
-                    if (x + 1 == gx && y + 1 ==gy) neighbors++;  // position 7
+                    if (x + 1 == gx && y + 1 == gy) neighbors++;  // position 7
                     if (x + 1 == gx && y - 1 == gy) neighbors++; // position 1
                     if (x - 1 == gx && y + 1 == gy) neighbors++; // position 5
                     if (x - 1 == gx && y - 1 == gy) neighbors++; // position 3
@@ -110,7 +112,7 @@ namespace Conway_Terminal
                 }
             return neighbors;
         }
-                private int Count()
+        private int Count()
         {
             _alive = 0;
             for (int y = 0; y < _upperY; y++)
@@ -119,23 +121,9 @@ namespace Conway_Terminal
                         _alive += 1;
             return _alive;
         }
+
         public void DrawFrame()
         {
-
-            for (int y = 0; y < _upperY; y++)
-            {
-                for (int x = 0; x < _upperX; x++)
-                {
-                    Console.Write(map[y, x] + " ");
-                }
-                Console.Write("\n");
-            }
-            ApplyRules();
-        }
-        
-        public void DrawBoth()
-        {
-
             for (int y = 0; y < _upperY; y++)
             {
                 for (int x = 0; x < _upperX; x++)
@@ -149,9 +137,13 @@ namespace Conway_Terminal
                 }
                 Console.Write("\n");
             }
+            Console.WriteLine("\nAmount alive: " + _alive);
+            Console.WriteLine("Amount dead: " + ((_upperX * _upperY) - _alive));
+            Console.WriteLine("Percent alive: " + ((double)_alive / (_upperX * _upperY)));
+
             ApplyRules();
         }
-        
+
 
     }
 }
