@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 
 namespace Conway_Terminal
 {
@@ -33,6 +34,7 @@ namespace Conway_Terminal
 
         private void DrawStart()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write(@"
    _____                                              _            _____                            
   / ____|                                            ( )          / ____|                           
@@ -42,6 +44,7 @@ namespace Conway_Terminal
   \_____|  \___/  |_| |_|   \_/\_/    \__,_|  \__, |     |___/    \_____|  \__,_| |_| |_| |_|  \___|
                                                __/ |                                                
                                               |___/                                                 ");  //big font
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(@"
                                                              ___            ___          _ _       
                                                             | _ )  _  _    / __|  _ __  | | |   __ 
@@ -50,6 +53,7 @@ namespace Conway_Terminal
                                                                     |__/          |_|               "); //small font
                                                                                                         //fonts by messletters.com
             Console.Write("\n");
+            Console.ResetColor();
             _start = Convert.ToInt32(Program.Prompt("Start Count: "));
         }
         private void ApplyRules()
