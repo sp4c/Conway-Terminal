@@ -7,7 +7,7 @@ namespace Conway_Terminal
         const int _upperY = 15;
         const int _upperX = 15;
         private char[,] map = new char[_upperY, _upperX];
-        private int _alive, _start, _neighbors;
+        private int _alive, _start;
 
 
         public Conway()
@@ -66,7 +66,7 @@ namespace Conway_Terminal
                             if (oldMap[y, x] == '1')
                                 map[y, x] = '0';
                             break;
-                        case 2: 
+                        case 2:
                             break;
                         case 3:
                             map[y, x] = '1';
@@ -83,30 +83,30 @@ namespace Conway_Terminal
         }
         private int Count(int gx, int gy, char[,] oldMap)
         {
-            _neighbors = 0;
+            int neighbors = 0;
             _alive = 0;
             for (int y = 0; y < _upperY; y++)
                 for (int x = 0; x < _upperX; x++)
-                    if (oldMap[y, x] == '1')
-                    {
-                        _alive += 1;
-                        if ((x + 1 == gx || x - 1 == gx) && (y + 1 == gy || y - 1 == gy))
-                        {
-                            _neighbors += 1;
-                            continue;
-                        }
-                        else if (x + 1 == gx || x - 1 == gx)
-                        {
-                            _neighbors += 1;
-                            continue;
-                        }
-                        else if (y + 1 == gy || y - 1 == gy)
-                            _neighbors += 1;
-                    }
-            return _neighbors;
-
+                {
+                    if (oldMap[y, x] == '0') continue;
+                    /*  you are at 0
+                         1 2 3
+                         8 0 4
+                         7 6 5
+                     */
+                    _alive += 1;
+                    if (x + 1 == gx && y + 1 ==gy) neighbors++;  // position 7
+                    if (x + 1 == gx && y - 1 == gy) neighbors++; // position 1
+                    if (x - 1 == gx && y + 1 == gy) neighbors++; // position 5
+                    if (x - 1 == gx && y - 1 == gy) neighbors++; // position 3
+                    if (x + 1 == gx && y == gy) neighbors++;     // position 8
+                    if (x - 1 == gx && y == gy) neighbors++;     // position 4
+                    if (x == gx && y + 1 == gy) neighbors++;     // position 6
+                    if (x == gx && y - 1 == gy) neighbors++;     // position 2
+                }
+            return neighbors;
         }
-        private int Count()
+                private int Count()
         {
             _alive = 0;
             for (int y = 0; y < _upperY; y++)
@@ -128,6 +128,26 @@ namespace Conway_Terminal
             }
             ApplyRules();
         }
+        
+        public void DrawBoth()
+        {
+
+            for (int y = 0; y < _upperY; y++)
+            {
+                for (int x = 0; x < _upperX; x++)
+                {
+                    Console.Write(map[y, x] + " ");
+                }
+                Console.Write(@"    |     ");
+                for (int x = 0; x < _upperX; x++)
+                {
+                    Console.Write(Count(x, y, map) + " ");
+                }
+                Console.Write("\n");
+            }
+            ApplyRules();
+        }
+        
 
     }
 }

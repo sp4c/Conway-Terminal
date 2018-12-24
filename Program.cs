@@ -13,7 +13,8 @@ namespace Conway_Terminal
             while (true)
             {
                 Console.Clear();
-                newGame.DrawFrame();
+                //newGame.DrawFrame();
+                newGame.DrawBoth();
                 System.Threading.Thread.Sleep(500);
             }
 
